@@ -2,6 +2,7 @@ import React from "react";
 import CurrencyFormat from "react-currency-format";
 import "./Subtotal.css";
 import { useDataLayerValue } from "../DataLayer";
+import { getBasketTotal } from "../reducer";
 function Subtotal() {
   const [{ basket }] = useDataLayerValue();
   return (
@@ -18,7 +19,7 @@ function Subtotal() {
           </>
         )}
         decimalScale={2}
-        value={basket?.reduce((acc, curr) => acc + curr.price, 0)}
+        value={getBasketTotal(basket)}
         displayType={"text"}
         thousandSeparator={true}
         prefix={"$"}
